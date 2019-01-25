@@ -1,2 +1,2 @@
 # nise
-Neuro-Inspired Engineering Project
+Neuro-Inspired Systems Engineering Project
