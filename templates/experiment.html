@@ -21,7 +21,11 @@ class Timer extends React.Component {
 
   tick() {
     if(this.state.seconds == 10){
-      var audio = new Audio('https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3');
+      var audio = new Audio('./static/dataio/birds.mp3');
+      audio.play();
+      }
+    if(this.state.seconds == 20){
+      var audio = new Audio('./static/dataio/glass.mp3');
       audio.play();
       }
     this.setState(state => ({

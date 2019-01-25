@@ -1,7 +1,7 @@
 # @Lennard de Graaf
 
-from nise.database import Session
-import nise.data_model as data_model
+from database import Session
+import data_model as data_model
 from random import randint, random
 
 session = Session()

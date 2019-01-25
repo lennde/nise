@@ -1,8 +1,8 @@
-from flask import Flask, g, session, request
+from flask import Flask, g, request
 from flask import render_template
 
-from nise.controller import Context
-from nise.forms import StartForm
+from controller import Context
+from forms import StartForm
 
 server = Flask(__name__)
 server.secret_key = 'dAdinai99adn9N)Dna9d'
@@ -31,4 +31,4 @@ def index():
 
 
 if __name__ == "__main__":
-    server.run(host="0.0.0.0", debug=True, port=5000)
+    server.run(host="0.0.0.0", debug=True, port=5050)

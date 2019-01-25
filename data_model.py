@@ -1,7 +1,7 @@
 # @Lennard de Graaf
 
 from sqlalchemy import Column, Integer, String, ForeignKey
-from nise.database import Base, engine
+from database import Base, engine
 
 
 class StudyParticipant(Base):
