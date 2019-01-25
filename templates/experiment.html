@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <div id="timer" style="margin-top: 20%">
+  </div>
+  <div id="video">
+    <iframe style="margin-top: 10%" width="1000" height="500" src="https://www.youtube.com/embed/f5LKfrCS75M?rel=0&autoplay=1" frameborder="0" allow="autoplay"></iframe>
+  </div>
+{% endblock %}
+
+
+{% block footer %}
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+
+class Timer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { seconds: 0 };
+  }
+
+  tick() {
+    if(this.state.seconds == 10){
+      var audio = new Audio('https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3');
+      audio.play();
+      }
+    this.setState(state => ({
+      seconds: state.seconds + 1
+    }));
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  render() {
+    return (
+      <div>{this.state.seconds} : 3600</div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Timer />,
+  document.getElementById('timer')
+);
+</script>
+{% endblock %}
