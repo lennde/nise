@@ -19,15 +19,23 @@ class Timer extends React.Component {
     this.state = { seconds: 0 };
   }
 
+
   tick() {
-    if(this.state.seconds == 10){
-      var audio = new Audio('./static/dataio/birds.mp3');
-      audio.play();
+    for(var i = 0; i < this.state.sound_planning.length; i++)
+    {
+      if(this.state.sound_planning[i].start_time == this.state.seconds)
+      {
+        if(this.state.sound_planning[i].sound == 1){
+          var audio = new Audio('./static/dataio/birds.mp3');
+          audio.play();
+        }
+        else{
+          var audio = new Audio('./static/dataio/glass.mp3');
+          audio.play();
+        }
       }
-    if(this.state.seconds == 20){
-      var audio = new Audio('./static/dataio/glass.mp3');
-      audio.play();
-      }
+    }
+
     this.setState(state => ({
       seconds: state.seconds + 1
     }));
@@ -35,6 +43,19 @@ class Timer extends React.Component {
 
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
+    fetch('http://0.0.0.0:5050/sound_planning/{{participant.studyparticipant_id}}')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          sound_planning: responseJson.sound_planning,
+        }, function(){
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
   }
 
   componentWillUnmount() {
